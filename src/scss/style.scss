@@ -1,0 +1,254 @@
+@import "bootstrap";
+@import "fonts";
+
+body {
+	font-family: "Raleway";
+}
+
+header {
+	background-color: #f9fafc;
+}
+
+// Font-sizes
+$sizes: (14, 32, 20, 80, 18, 24, 28, 48, 16, 12, 10);
+
+@each $fz in $sizes {
+	.fz-#{$fz} {
+		font-size: #{$fz}px;
+	}
+}
+
+// Estilização do menu hamburguer
+#hamburguer {
+	width: 100px;
+	height: 100%;
+	background-color: transparent;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.line {
+	width: 50px;
+	height: 5px;
+	background-color: #383840;
+	margin: 5px auto;
+	transition: all 0.3s ease;
+	pointer-events: none;
+}
+
+.is-active {
+	.line:nth-child(1) {
+		transform: translateY(15px) rotate(45deg);
+	}
+
+	.line:nth-child(2) {
+		opacity: 0;
+	}
+	.line:nth-child(3) {
+		transform: translateY(-15px) rotate(-45deg);
+	}
+}
+
+// Aplicação do background e do filtro de escurecimento da imagem
+section:nth-child(1) {
+	background: url(../img/bg-section.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+
+	& > div {
+		background: rgba(31, 45, 61, 0.85);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+
+		#regras {
+			background: linear-gradient(180.13deg, #111111 27.81%, rgba(17, 17, 17, 0) 92.2%);
+			opacity: 0.8;
+			min-height: 450px;
+		}
+	}
+}
+
+// Aplicação do background das seções 3 e 4
+section:nth-child(3),
+section:nth-child(4) {
+	background-color: #fafafa;
+}
+
+// Aplicação do background da seção 5 (clipping)
+section:nth-child(5) {
+	background: url("../img/gp-pt.svg") no-repeat -65px 20px, linear-gradient(90deg, #131a22 7.11%, #2f3e51 74.04%);
+	box-shadow: 0px 20px 20px #8492a6;
+}
+
+section:nth-child(6) {
+	background: url("../img/ft-ar-1.svg"), url("../img/ft-ar-2.svg"), url("../img/ft-ar-3.svg"), url("../img/ft-ar-3.svg");
+	background-repeat: no-repeat;
+	background-position-x: 12%, 6%, 0px;
+	background-position-y: 150px, 175px, 200px;
+	&::before {
+		content: "CONVIDADOS";
+		position: absolute;
+		left: 5%;
+		top: 0;
+		font-size: 132px;
+		font-weight: 900;
+		color: #fff;
+		text-shadow: 0 0 2px #eb5151;
+	}
+}
+
+section:nth-child(7) {
+	background: url(../img/ft-ar-gr.svg), url(../img/ft-ar-gr.svg), url(../img/ft-ar-gr.svg), url(../img/ft-ar-gr-2.svg), url(../img/ft-ar-gr-2.svg), url(../img/ft-ar-gr-2.svg), linear-gradient(263.4deg, rgba(64, 222, 99, 0.17) 4.8%, rgba(229, 233, 242, 0) 66.94%);
+	background-repeat: no-repeat;
+	background-position-x: -5%, 0%, 5%, 105%, 100%, 96%, 0;
+	background-position-y: 75%, 85%, 95%, 15%, 25%, 35%, 0;
+}
+
+// Customização dos formatos das imagens
+.citys {
+	clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+}
+
+// Botões de interação do carrossel
+#controlImgs {
+	display: inline;
+	position: absolute;
+	right: 40px;
+	bottom: 5px;
+	z-index: 1000;
+
+	button {
+		padding: 7px 12px;
+		color: white;
+		background: #273444;
+		border: 0;
+	}
+}
+
+// Pradonização nos tamanhos das imagens do carrossel
+.item {
+	div {
+		&::before {
+			content: "";
+			width: 370px;
+			height: 370px;
+			clip-path: polygon(0 0, 99.8% 0, 90% 100%, 0 100%);
+			display: flex;
+			position: absolute;
+			left: 30px;
+			top: 30px;
+			border: 1px solid;
+		}
+
+		&::after {
+			content: "";
+			width: 1px;
+			height: 370px;
+			background: black;
+			display: flex;
+			position: absolute;
+			top: 30px;
+			left: 380px;
+			transform: rotate(5.7deg);
+		}
+		img {
+			height: 370px;
+			width: 370px !important;
+		}
+		p {
+			background: #fafafa;
+			position: relative;
+		}
+	}
+}
+
+.bg-fa {
+	background-color: #fafafa;
+}
+
+// Aplicação de feature da interface
+#carousel::before {
+	content: "";
+	display: flex;
+	background: url("../img/gp-pt.svg") no-repeat;
+	height: 142px;
+	width: 142px;
+	position: absolute;
+	top: -45px;
+	left: -45px;
+}
+
+#programacao:before {
+	content: "OUTUBRO.20";
+	font-size: 14px;
+	height: 175px;
+	line-height: 43px;
+	text-indent: 15px;
+	width: 150px;
+	display: flex;
+	justify-content: flex-end;
+	padding-right: 10px;
+	border: 1px solid #3c4858;
+	position: absolute;
+	top: -75px;
+	left: -33px;
+}
+
+div#programacao::after {
+	content: "";
+	width: 1000px;
+	height: 2px;
+	display: flex;
+	background: #3c4858;
+	position: absolute;
+	top: 15px;
+	left: -1033px;
+}
+
+#date::before {
+	content: "";
+	width: 60px;
+	height: 4px;
+	display: flex;
+	background: #fab900;
+	position: absolute;
+	top: 5px;
+}
+
+#convidados::before {
+	content: "";
+	width: 10%;
+	height: 4px;
+	background: #eb5151;
+	position: absolute;
+	left: 45%;
+	top: 40px;
+}
+
+.convidados > div > div {
+	position: relative;
+
+	.invite {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		height: 150px;
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000c2 60%);
+		color: white;
+		padding: 72px 16px 0;
+
+		span:nth-child(1) {
+			font-size: 16px;
+			font-weight: bold;
+			color: #e62121;
+		}
+		span:nth-child(2) {
+			font-size: 14px;
+			color: #d8d6d3;
+		}
+	}
+}

@@ -1,0 +1,23 @@
+@font-face {
+    font-family: "icons";
+    src: url("../fonts/icon/icons.eot?3214424485bd837c0742fe4fef7a4881?#iefix") format("embedded-opentype"),
+url("../fonts/icon/icons.woff2?3214424485bd837c0742fe4fef7a4881") format("woff2"),
+url("../fonts/icon/icons.woff?3214424485bd837c0742fe4fef7a4881") format("woff"),
+url("../fonts/icon/icons.ttf?3214424485bd837c0742fe4fef7a4881") format("truetype"),
+url("../fonts/icon/icons.svg?3214424485bd837c0742fe4fef7a4881#icons") format("svg");
+}
+
+i[class^="icon-"]:before, i[class*=" icon-"]:before {
+    font-family: icons !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-download:before {
+    content: "\f101";
+}
