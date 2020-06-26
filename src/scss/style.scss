@@ -1,5 +1,43 @@
-@import "bootstrap";
-@import "fonts";
+$en-green-light: #67e486 !default;
+$en-green: #26d952 !default;
+$en-green-dark: #1eae42 !default;
+$en-red-light: #e48667 !default;
+$en-red: #d95226 !default;
+$en-red-dark: #ae421e !default;
+$en-yellow-light: #ffd661 !default;
+$en-yellow: #ffc82c !default;
+$en-yellow-dark: #fab900 !default;
+
+$theme-colors: () !default;
+$theme-colors: map-merge(
+	(
+		"en-green-light": $en-green-light,
+		"en-green": $en-green,
+		"en-green-dark": $en-green-dark,
+		"en-yellow-light": $en-yellow-light,
+		"en-yellow": $en-yellow,
+		"en-yellow-dark": $en-yellow-dark,
+		"en-red-light": $en-red-light,
+		"en-red": $en-red,
+		"en-red-dark": $en-red-dark,
+	),
+	$theme-colors
+);
+
+
+$spacer: 1rem !default;
+$spacers: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$spacers: map-merge(
+	(
+		"en-92": ($spacer * 5.63),
+		"en-40": ($spacer * 2.5),
+		"en-70": ($spacer * 4.38),
+	),
+	$spacers
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
 body {
 	font-family: "Raleway";
@@ -9,6 +47,25 @@ header {
 	background-color: #f9fafc;
 }
 
+// Display contents
+.d-contents{
+	display: contents!important;
+}
+
+.justify-content-evenly{
+	justify-content: space-evenly!important;
+}
+
+@media (min-width: 992px){
+	.d-lg-contents{
+		display: contents!important;
+	}
+
+	.d-lg-initial{
+		display: initial!important;
+	}
+}
+
 // Font-sizes
 $sizes: (14, 32, 20, 80, 18, 24, 28, 48, 16, 12, 10);
 
@@ -16,6 +73,14 @@ $sizes: (14, 32, 20, 80, 18, 24, 28, 48, 16, 12, 10);
 	.fz-#{$fz} {
 		font-size: #{$fz}px;
 	}
+}
+
+.font-raleway{
+	font-family: "Raleway";
+}
+
+.font-montserrat{
+	font-family: "Montserrat";
 }
 
 // Estilização do menu hamburguer
