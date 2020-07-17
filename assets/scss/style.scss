@@ -1,0 +1,513 @@
+@import "bootstrap";
+@import "responsive";
+
+body {
+    font-family: "Raleway", sans-serif;
+    background-color: $gray-100;
+}
+
+#header {
+    background: $gray-100;
+
+    .logo {
+        padding-top: 5px;
+        height: 80%;
+    }
+}
+
+#menu-collapse {
+    .menu {
+        list-style: none;
+    }
+
+    .link-menu {
+        @extend .text-black-50;
+        font-weight: bold;
+
+        &:hover {
+            color: $pink;
+        }
+
+        &.especial {
+            color: $black !important;
+            @extend .py-1;
+            @extend .px-4;
+        }
+    }
+}
+
+.text-pink {
+    color: $pink;
+}
+.font-montserrat {
+    font-family: "Montserrat", sans-serif;
+}
+.font-rubik {
+    font-family: "Rubik";
+}
+.font-open {
+    font-family: "Open Sans";
+}
+// Font-sizes
+$sizes: (14, 32, 20, 80, 18, 24, 28, 48, 16, 12, 10, 40);
+
+@each $fz in $sizes {
+    .fz-#{$fz} {
+        font-size: #{$fz}px;
+    }
+}
+
+// Estilização do menu hamburguer
+#hamburguer {
+    width: 100px;
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.line {
+    width: 50px;
+    height: 5px;
+    background-color: #383840;
+    margin: 5px auto;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.is-active {
+    .line:nth-child(1) {
+        transform: translateY(15px) rotate(45deg);
+    }
+
+    .line:nth-child(2) {
+        opacity: 0;
+    }
+    .line:nth-child(3) {
+        transform: translateY(-15px) rotate(-45deg);
+    }
+}
+
+// Aplicação do background e do filtro de escurecimento da imagem
+.sec-principal {
+    background: url(../img/bg-section.png) no-repeat center;
+    background-size: cover;
+
+    .bt-hero-inscricao {
+        position: relative;
+        //background-color: $yellow;
+        background-color: darken($yellow, 10%);
+        border-radius: 0;
+        font-weight: bold;
+
+        .text {
+            position: relative;
+            display: block;
+            width: 100%;
+            z-index: 2;
+            background-color: darken($yellow, 10%);
+            @extend .py-2;
+            @extend .px-5;
+        }
+
+        &::after {
+            content: "";
+            border: 1px solid darken($yellow, 10%);
+            position: absolute;
+            top: 7px;
+            left: 7px;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        &:hover {
+            transition: all 0.3s;
+
+            &::after {
+                border-color: lighten($yellow, 10%);
+            }
+            .text,
+            & {
+                background-color: lighten($yellow, 10%);
+            }
+        }
+    }
+
+    .bg {
+        background: rgba(31, 45, 61, 0.85);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    #regras {
+        background: linear-gradient(180.13deg, #111111 30%, rgba($black, 0) 100%);
+        opacity: 0.8;
+        height: 500px;
+    }
+
+    .regras {
+        .bt-detalhes {
+            border-bottom: 1px solid $gray-400;
+            padding: 1em;
+            color: $gray-300;
+
+            &:last-child {
+                border-bottom: 0;
+            }
+
+            &:hover {
+                text-decoration: none;
+                color: darken($yellow, 10%);
+            }
+
+            span {
+                margin-top: 0.8em;
+                display: block;
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+.bg-fa {
+    background-color: #fafafa;
+}
+
+// codigo alterado
+
+.sec-parceiros {
+    padding: 2rem 0 5rem;
+    background-color: $white;
+
+    img {
+        padding: 1em;
+    }
+}
+
+.sec-sobre {
+    padding: 7rem 0;
+
+    .sub-sec-carrossel {
+        // Customização dos formatos das imagens
+        .citys {
+            clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+        }
+
+        // Botões de interação do carrossel
+        .control-imgs {
+            display: inline;
+            position: absolute;
+            right: 40px;
+            bottom: -10px;
+            z-index: 1000;
+
+            button {
+                //padding: 7px 12px;
+                @extend .py-2;
+                @extend .px-3;
+                color: white;
+                background: #273444;
+                border: 0;
+            }
+        }
+
+        // Pradonização nos tamanhos das imagens do carrossel
+        .item {
+            .figure {
+                &::before {
+                    content: "";
+                    width: 370px;
+                    height: 370px;
+                    clip-path: polygon(0 0, 99.8% 0, 90% 100%, 0 100%);
+                    display: flex;
+                    position: absolute;
+                    left: 30px;
+                    top: 30px;
+                    border: 1px solid;
+                }
+
+                &::after {
+                    content: "";
+                    width: 1px;
+                    height: 370px;
+                    background: black;
+                    display: flex;
+                    position: absolute;
+                    top: 30px;
+                    left: 380px;
+                    transform: rotate(5.7deg);
+                }
+                img {
+                    height: 370px;
+                    width: 370px !important;
+                }
+                legend,
+                .legend {
+                    font-size: 1rem;
+                    background: $gray-100;
+                    position: relative;
+                }
+            }
+        }
+
+        // Aplicação de feature da interface
+        #carousel::before {
+            content: "";
+            display: flex;
+            background: url("../img/gp-pt.svg") no-repeat;
+            height: 142px;
+            width: 142px;
+            position: absolute;
+            top: -45px;
+            left: -45px;
+        }
+
+        #date::before {
+            content: "";
+            width: 60px;
+            height: 4px;
+            display: flex;
+            background: $yellow;
+            position: absolute;
+            top: 5px;
+        }
+    }
+
+    .sub-sec-programacao {
+        padding-top: 10rem;
+
+        #programacao:before {
+            content: "OUTUBRO.20";
+            font-size: 14px;
+            height: 175px;
+            line-height: 43px;
+            text-indent: 15px;
+            width: 150px;
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 10px;
+            border: 2px solid $gray-500;
+            position: absolute;
+            top: -75px;
+            left: -33px;
+        }
+
+        div#programacao::after {
+            content: "";
+            width: 1000px;
+            height: 3px;
+            display: flex;
+            background: $gray-500;
+            position: absolute;
+            top: 15px;
+            left: -1033px;
+        }
+
+        .agenda {
+            padding: 0;
+            list-style: none;
+
+            li {
+                line-height: 1em;
+                margin-top: 1em;
+            }
+        }
+    }
+
+    .item-programacao {
+        border-left: 2px solid $gray-300;
+    }
+
+    .container-download {
+        text-align: right;
+    }
+    .link-download {
+        color: $pink;
+        display: inline-block;
+        font-weight: bold;
+        padding: 1em 2em;
+        border: 1px solid $gray-100;
+
+        &:hover {
+            color: $red;
+            text-decoration: none;
+        }
+    }
+}
+
+.sec-noticias {
+    padding: 7rem 0;
+    margin-bottom: 3rem;
+
+    background: url("../img/gp-pt.svg") no-repeat -65px 20px, linear-gradient(90deg, #131a22 7.11%, #2f3e51 74.04%);
+    box-shadow: 0px 20px 20px $gray-600;
+
+    .noticias-mais {
+        .item-noticia {
+            display: block;
+
+            .text {
+                display: block;
+                margin-top: 1em;
+            }
+
+            &:hover {
+                .text,
+                .tipo-noticia {
+                    color: $yellow;
+                }
+                .tipo-noticia {
+                    border: 1px solid $yellow;
+                }
+
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.sec-convidados {
+    padding: 7rem 0;
+
+    background: url("../img/ft-ar-1.svg"), url("../img/ft-ar-2.svg"), url("../img/ft-ar-3.svg"), url("../img/ft-ar-3.svg"), url("../img/ft-ar-3.svg");
+    background-repeat: no-repeat;
+    background-position-x: 12%, 6%, 0px, 90%;
+    background-position-y: 150px, 175px, 200px, 90%;
+
+    &::before {
+        content: "CONVIDADOS";
+        position: absolute;
+        left: 5%;
+        top: 0;
+        font-size: 132px;
+        font-weight: 900;
+        color: $gray-100;
+        text-shadow: 0 0 2px rgba($pink, 0.35);
+    }
+
+    .title {
+        position: relative;
+        font-weight: bold;
+        @extend .h1;
+
+        &::before {
+            content: "";
+            width: 10%;
+            height: 4px;
+            background: $pink;
+
+            position: absolute;
+            left: 47%;
+            right: auto;
+            top: auto;
+            bottom: -10%;
+        }
+    }
+
+    .convidados > div > div {
+        position: relative;
+
+        .invite {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000c2 60%);
+            color: white;
+            padding: 72px 16px 0;
+
+            span:nth-child(1) {
+                font-size: 16px;
+                font-weight: bold;
+                color: #e62121;
+            }
+            span:nth-child(2) {
+                font-size: 14px;
+                color: #d8d6d3;
+            }
+        }
+    }
+}
+
+.sec-edicoes-anteriores {
+    @extend .pt-5;
+    @extend .pb-5;
+
+    background: url(../img/ft-ar-gr.svg), url(../img/ft-ar-gr.svg), url(../img/ft-ar-gr.svg), url(../img/ft-ar-gr-2.svg), url(../img/ft-ar-gr-2.svg), url(../img/ft-ar-gr-2.svg), linear-gradient(263.4deg, rgba(64, 222, 99, 0.17) 4.8%, rgba(229, 233, 242, 0) 66.94%);
+    background-repeat: no-repeat;
+    background-position-x: -5%, 0%, 5%, 105%, 100%, 96%, 0;
+    background-position-y: 75%, 85%, 95%, 15%, 25%, 35%, 0;
+
+    .btn-edition {
+        @extend .btn;
+        @extend .btn-dark;
+        display: inline-block;
+        margin-top: 1em;
+        margin-right: 1em;
+
+        strong,
+        .title {
+            display: block;
+            font-size: 1.1em;
+            margin-bottom: 1em;
+        }
+
+        &:hover,
+        &:active {
+            background-color: $green;
+            border-color: $green;
+        }
+
+        &.disabled {
+            small {
+                display: block;
+                line-height: 1em;
+            }
+        }
+    }
+}
+
+.titulo-news:before {
+    content: "";
+    display: flex;
+    width: 50px;
+    height: 5px;
+    background: #eb5151;
+    position: absolute;
+    bottom: -20px;
+}
+
+.bg-sec-title_news {
+    background: linear-gradient(262.8deg, rgba(64, 222, 99, 0.17) 4.8%, rgba(229, 233, 242, 0) 66.94%);
+}
+
+figcaption {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: #8492a6;
+}
+
+.content-news {
+    line-height: 160%;
+    p {
+        max-width: 87%;
+        margin-bottom: 34px;
+    }
+    h2 {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 70px 0 45px;
+    }
+    img {
+        width: 100%;
+    }
+}
+
+img {
+    max-width: 100% !important;
+}

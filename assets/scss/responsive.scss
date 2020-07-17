@@ -1,0 +1,90 @@
+@import "bootstrap/_variables";
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 575.98px) { 
+
+	.sec-sobre{
+		.sub-sec-programacao{
+			.link-download{
+				display: block;
+				text-align: center;
+				border-color: $pink;
+			}			
+		}
+	}
+
+	.sec-parceiros{		
+		text-align: center !important;
+	}
+
+	#header{
+		#menu-collapse{
+			.menu{
+				width: 100%;
+				padding: 1rem;
+				text-align: center;
+
+				li{
+					width: 100%;
+					border-bottom: 1px solid;
+
+					&:last-child{
+						border: 0;
+					}
+
+					.link-menu{
+						display: block;
+
+						&.especial{
+							padding: 1em !important;
+							margin: 0;
+						}
+					}					
+				}
+
+			}
+		}
+	}
+
+}
+
+@media (max-width: 767px) { 
+	.sec-sobre{
+		.sub-sec-programacao{
+			.container-download{
+				text-align: left;
+				border-left: 2px solid $pink;
+			}
+			.link-download{
+				border-color: $pink;
+
+				&:hover{
+					background-color: $pink;					
+					color: $white;
+					border-color: $white;
+				}
+			}			
+		}
+	}
+
+	.sub-sec-destaques{
+		margin-top: 4rem;
+		.regras{
+			padding-top: 2rem;
+		}
+	}
+
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { 
+
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { 
+
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { }
