@@ -12674,6 +12674,9 @@ body {
 .text-pink {
   color: #eb5151;
 }
+.text-pink:hover {
+  color: #b33c3c;
+}
 
 .font-montserrat {
   font-family: "Montserrat", sans-serif;
@@ -12938,11 +12941,12 @@ body {
   top: 15px;
   left: -1033px;
 }
-.sec-sobre .sub-sec-programacao .agenda {
+.sec-sobre .sub-sec-programacao .agenda ul {
   padding: 0;
   list-style: none;
 }
 .sec-sobre .sub-sec-programacao .agenda li {
+  font-size: 16px;
   line-height: 1em;
   margin-top: 1em;
 }
@@ -13030,7 +13034,7 @@ body {
   height: 150px;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000c2 60%);
   color: white;
-  padding: 72px 16px 0;
+  padding: 65px 16px 0;
 }
 .sec-convidados .convidados > div > div .invite span:nth-child(1) {
   font-size: 16px;
@@ -13108,6 +13112,27 @@ figcaption {
 
 img {
   max-width: 100% !important;
+}
+
+#menu-menu {
+  padding: 0;
+  margin: 0;
+}
+#menu-menu a {
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.5) !important;
+  margin: 1rem 0;
+}
+
+.sec-about h2 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #343a40;
+}
+.sec-about p {
+  font-size: 20px;
+  margin-top: 1.5rem;
+  margin-bottom: 40px;
 }
 
 /*# sourceMappingURL=style.css.map */

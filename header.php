@@ -1,5 +1,6 @@
 <?php
 	$tema = get_bloginfo('template_url');
+	$nome = get_bloginfo('name');
 	$assets = $tema . '/assets';
 ?>
 
@@ -8,7 +9,14 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Econaçu</title>
+		<?php
+			if(is_front_page()) { ?>
+			<title><?php echo $nome; ?></title>
+			<?php } else { ?>
+			<title><?php the_title(); echo " - $nome" ?></title>
+			<?php
+			}
+		?>
 
 		<link rel="stylesheet" href="<?php echo $assets; ?>/css/style.css" />
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Raleway:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Rubik:wght@300;400;500;700&Open+Sans:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
@@ -36,23 +44,19 @@
 							</div>
 						</div>
 
-
 						<div class="offset-lg-3 col-lg-6">
 							<nav id="menu-collapse" class="collapse d-lg-contents">
-								<ul class="menu d-flex flex-column flex-lg-row align-items-center justify-content-lg-between h-100 font-weight-semibold">
-									<li>
-										<a href="#" class="link-menu my-3">SOBRE</a>
-									</li>
-									<li>
-										<a href="#" class="link-menu my-3">REGRAS</a>
-									</li>
-									<li>
-										<a href="#" class="link-menu my-3">SUBMISSÕES</a>
-									</li>
-									<li>
-										<a href="#" class="link-menu especial btn btn-en-yellow-dark rounded-0 my-3">INSCRIÇÃO</a>
-									</li>
-								</ul>
+							<?php
+								if(has_nav_menu('primary')){
+										wp_nav_menu(array(
+												'theme_location' => 'primary',
+												'container' => false,
+												'menu_class' => false,
+												'fallback_cb' => false,
+												'menu_class' => "menu d-flex flex-column flex-lg-row align-items-center justify-content-lg-between h-100 font-weight-semibold"
+										));
+								}
+							?>
 							</nav>
 						</div>
 					</div>

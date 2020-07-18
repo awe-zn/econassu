@@ -88,12 +88,11 @@ $assets = $tema . '/assets';
 						</div>
 						<div class="col-lg-6 offset-lg-1 pt-5">
 							<?php
-								$post = get_post(7);
-								$link = get_post_permalink(7);
+								dynamic_sidebar( 'section_about' );
 							?>
-							<h2 class="text-dark fz-32 font-weight-bolder"><?php echo $post->post_title; ?></h2>
 							
-							<p class="fz-20 mt-4 mb-en-40"><?php echo $post->post_excerpt; ?></p>
+							<!-- <h2 class="text-dark fz-32 font-weight-bolder"><?php echo $post->post_title; ?></h2>
+							<p class="fz-20 mt-4 mb-en-40"><?php echo $post->post_excerpt; ?></p> -->
 
 							<a href="<?php echo $link; ?>" class="btn btn-dark btn-lg rounded-0 font-weight-bold py-2 px-5">Saiba mais</a>							
 						</div>
@@ -110,36 +109,27 @@ $assets = $tema . '/assets';
 									<h4 class="fz-18 text-black-50 mb-en-70 position-relative bg-fa">NOSSA PROGRAMAÇÃO</h4>
 								</div>
 							</div>
-							<div class="col-md-4 item-programacao">
-								<div class="d-flex flex-column mb-3 mb-md-0 font-weight-medium">
-									<h3 class="font-montserrat font-weight-bold fz-48">10</h3>
-									<ul class="agenda">
-										<li class="fz-16">19h // ABERTURA</li>
-										<li class="fz-16">20H // PAINÉIS</li>
-										<li class="fz-16">21H // MESAS REDONDAS</li>										
-									</ul>
-								</div>
-							</div>
-							<div class="col-md-4 item-programacao">
-								<div class="d-flex flex-column mb-3 mb-md-0 font-weight-medium">
-									<h3 class="font-montserrat font-weight-bold fz-48">11</h3>
-									<ul class="agenda">
-										<li class="fz-16">19h // APRESENTAÇÕES DE ARTIGOS</li>
-										<li class="fz-16">20H // PAINÉIS TEMÁTICOS</li>
-										<li class="fz-16">21H // MESAS REDONDAS</li>										
-									</ul>
-								</div>
-							</div>
-							<div class="col-md-4 item-programacao">
-								<div class="d-flex flex-column font-weight-medium">
-									<h3 class="font-montserrat font-weight-bold fz-48">12</h3>
-									<ul class="agenda">
-										<li class="fz-16">20H // CERIMÔMIA DE ENCERRAMENTO</li>
-										<li class="fz-16">21H // PREMIAÇÃO</li>										
-									</ul>
-								</div>
-							</div>
-							<div class="col-12 pt-5 container-download">
+							<?php
+								$programacao = new WP_Query(array(
+									"post_type" => "programacao"
+								));
+
+								if ($programacao -> have_posts()) {
+									$order = 8;
+									while ($programacao -> have_posts()) {
+										$programacao -> the_post(); ?>
+									<div class="col-md-4 item-programacao order-<?php echo $order; ?>">
+										<div class="d-flex flex-column mb-3 mb-md-0 font-weight-medium">
+											<h3 class="font-montserrat font-weight-bold fz-48"><?php the_title(); ?></h3>
+											<div class="agenda"><?php the_content(); ?></div>
+										</div>
+									</div>
+									<?php
+										$order--;
+									}
+								}
+							?>
+							<div class="col-12 pt-5 container-download order-9">
 								<a href="#" class="link-download" title="clique para fazer download da programação"><i class="fas fa-file-download mr-2"></i>PROGRAMAÇÃO COMPLETA</a>								
 							</div>
 						</div>
@@ -213,36 +203,29 @@ $assets = $tema . '/assets';
 					
 					<h2 class="title text-center">CONVIDADOS</h2>
 					
-
 					<div class="row mt-5">
 						<div class="convidados d-contents">
-							<div class="col-md-4">
-								<div class="my-3 my-lg-0">
-									<img src="<?php echo $assets; ?>/img/warren-boffet.png" alt="Warren Boffet" class="img-fluid w-100" />
-									<div class="d-flex flex-column invite">
-										<span>WARREN BOFFET</span>
-										<span>Investidor e filantropo americano.</span>
+						<?php
+							$convidados = new WP_Query(array(
+								"post_type" => "convidados",
+								"post_per_page" => 3
+							));
+
+							if($convidados -> have_posts()) {
+								while ($convidados -> have_posts()) {
+									$convidados -> the_post(); ?>
+								<div class="col-md-4">
+									<div class="my-3 my-lg-0">
+										<img src="<?php the_field('convidado-foto'); ?>" alt="<?php the_title(); ?>" class="img-fluid w-100" />
+										<div class="d-flex flex-column invite">
+											<span class="text-uppercase"><?php the_title(); ?></span>
+											<span><?php the_field('convidado-sobre'); ?></span>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="my-3 my-lg-0">
-									<img src="<?php echo $assets; ?>/img/chris-gardner.png" alt="Warren Boffet" class="img-fluid w-100" />
-									<div class="d-flex flex-column invite">
-										<span>CHRIS GARDNER</span>
-										<span>Empresário norte-americano, investidor, corretor da bolsa</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="my-3 my-lg-0">
-									<img src="<?php echo $assets; ?>/img/luis-barsi.png" alt="Warren Boffet" class="img-fluid w-100" />
-									<div class="d-flex flex-column invite">
-										<span>LUIS BARSI</span>
-										<span>Economista, advogado e o maior investidor individual brasileiro</span>
-									</div>
-								</div>
-							</div>
+								<?php }
+							}
+						?>
 						</div>
 					</div>
 				</div>
