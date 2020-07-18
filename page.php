@@ -21,12 +21,12 @@
 <section>
   <div class="container mb-5">
     <div class="row">
-      <div class="col-8">
+      <div class="col-md-8">
         <div class="fz-18 content-news">
           <?php the_content(); ?>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-md-4">
           <div>
             <div class="font-rubik font-weight-bold text-center border border-gray-500 py-2 mb-4">ÚLTIMAS DO BLOG</div>
             <?php
