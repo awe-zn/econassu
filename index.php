@@ -52,9 +52,19 @@ $assets = $tema . '/assets';
 						</div>
 						<div class="col-12 col-xl-10 col-lg-9 col-md-8 pt-5">
 							<h2 class="h3">APOIO</h2>
-							<img src="<?php echo $assets; ?>/img/ufrn.png" alt="" class="img-fluid" />
-							<img src="<?php echo $assets; ?>/img/ufersa.png" alt="" class="img-fluid" />
-							<img src="<?php echo $assets; ?>/img/ifrn.png" alt="" class="img-fluid" />
+							<?php
+								$apoio = new WP_Query(array(
+									"post_type" => "apoio"
+								));
+
+								if ($apoio -> have_posts()) {
+									while ($apoio -> have_posts()) {
+										$apoio -> the_post(); ?>
+										<img src="<?php the_field("apoiador-logo"); ?>" alt="<?php the_title(); ?>" class="img-fluid" />
+										<?php
+									}
+								}
+							?>
 						</div>
 					</div>
 				</div>

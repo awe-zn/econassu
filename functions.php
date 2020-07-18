@@ -26,6 +26,7 @@ add_action("after_setup_theme", "support_theme");
 function create_post_types() {
   post_type_convidado();
   post_type_programacao();
+  post_type_apoios();
 }
 
 function post_type_convidado(){
@@ -152,6 +153,33 @@ function post_type_programacao(){
             "description" => "Área para registro de atividades na programação do evento",
             "public" => true,
             "supports" => Array()
+        )
+    );
+}
+
+function post_type_apoios(){
+  register_post_type( "apoio",
+        array(
+            "labels" => array(
+                "name" => "Apoios",
+                "singular_name" => "Apoio",
+                "add_new" => "Adicionar novo apoiador",
+                "add_new_item" => "Adicionar novo apoiador",
+                "edit_item" => "Editar apoiador",
+                "new_item" => "Nova apoiador",
+                "view_item" => "Ver apoiador",
+                "view_items" => "Ver apoiador",
+                "search_items" => "Buscar apoiador",
+                "not_found" => "Nenhuma apoiador encontrado",
+                "not_found_in_trash" => "Nenhuma apoiador na lixeira",
+                "all_items" => "Todos apoiadores",
+                "uploaded_to_this_item" => "Carregado para este apoiador",
+                "items_list" => "Lista de apoiadores",
+                "item_updated" => "Apoiador atualizado"
+            ),
+            "description" => "Área para registro de apoiadores",
+            "public" => true,
+            "supports" => Array('title')
         )
     );
 }
