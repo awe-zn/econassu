@@ -27,6 +27,7 @@ function create_post_types() {
   post_type_convidado();
   post_type_programacao();
   post_type_apoios();
+  post_type_ed_prev();
   custom_fields();
 }
 
@@ -113,8 +114,35 @@ function post_type_apoios(){
     );
 }
 
+function post_type_ed_prev () {
+  register_post_type( "ed_prev",
+        array(
+            "labels" => array(
+                "name" => "Edições anteriores",
+                "singular_name" => "Edição",
+                "add_new" => "Adicionar nova edição",
+                "add_new_item" => "Adicionar nova edição",
+                "edit_item" => "Editar edição",
+                "new_item" => "Nova edição",
+                "view_item" => "Ver edição",
+                "view_items" => "Ver edição",
+                "search_items" => "Buscar edição",
+                "not_found" => "Nenhuma edição encontrado",
+                "not_found_in_trash" => "Nenhuma edição na lixeira",
+                "all_items" => "Todas edições",
+                "uploaded_to_this_item" => "Carregado para esta edição",
+                "items_list" => "Lista de edições",
+                "item_updated" => "Edição atualizada"
+            ),
+            "description" => "Área para registro de edições e links dos mesmos",
+            "public" => true,
+            "supports" => Array('title')
+        )
+    );
+}
+
 function custom_fields() {
-  if( function_exists('acf_add_local_field_group') ):
+  if( function_exists('acf_add_local_field_group') ){
 
     acf_add_local_field_group(array(
       'key' => 'group_5f135d728ad7f',
@@ -232,6 +260,78 @@ function custom_fields() {
       'description' => '',
     ));
     
-    endif;
+    acf_add_local_field_group(array(
+      'key' => 'group_5f18568e9076d',
+      'title' => 'Edição anterior',
+      'fields' => array(
+        array(
+          'key' => 'field_5f18575f64fc6',
+          'label' => 'Aguardando publicação?',
+          'name' => 'aguardando_publicacao',
+          'type' => 'radio',
+          'instructions' => '',
+          'required' => 1,
+          'conditional_logic' => 0,
+          'wrapper' => array(
+            'width' => '',
+            'class' => '',
+            'id' => '',
+          ),
+          'choices' => array(
+            'sim' => 'Sim',
+            'nao' => 'Não',
+          ),
+          'allow_null' => 0,
+          'other_choice' => 0,
+          'default_value' => '',
+          'layout' => 'vertical',
+          'return_format' => 'value',
+          'save_other_choice' => 0,
+        ),
+        array(
+          'key' => 'field_5f185922ee123',
+          'label' => 'Link do PDF da edição',
+          'name' => 'link_pdf',
+          'type' => 'url',
+          'instructions' => '',
+          'required' => 1,
+          'conditional_logic' => array(
+            array(
+              array(
+                'field' => 'field_5f18575f64fc6',
+                'operator' => '==',
+                'value' => 'nao',
+              ),
+            ),
+          ),
+          'wrapper' => array(
+            'width' => '',
+            'class' => '',
+            'id' => '',
+          ),
+          'default_value' => '',
+          'placeholder' => '',
+        ),
+      ),
+      'location' => array(
+        array(
+          array(
+            'param' => 'post_type',
+            'operator' => '==',
+            'value' => 'ed_prev',
+          ),
+        ),
+      ),
+      'menu_order' => 0,
+      'position' => 'normal',
+      'style' => 'default',
+      'label_placement' => 'top',
+      'instruction_placement' => 'label',
+      'hide_on_screen' => '',
+      'active' => true,
+      'description' => '',
+    ));
+  }
 }
+
 add_action( "init", "create_post_types" );

@@ -246,22 +246,33 @@ $assets = $tema . '/assets';
 					<h2 class="font-weight-bolder fz-28">EDIÇÕES ANTERIORES</h2>
 					<p>Faça download dos anais das edições anteriores. Os arquivos estão disponíveis em pdf.</p>
 					<div>
-						<a href="http://localhost/wordpress/wp-content/uploads/2020/07/exemplo.pdf" target="_blank" class="btn-edition">
-							<strong>2016</strong>
-							<small>Download</small>
-						</a>
-						<a href="#" class="btn-edition">
-							<strong>2017</strong>
-							<small>Download</small>
-						</a>
-						<a href="#" class="btn-edition">
-							<strong>2018</strong>
-							<small>Download</small>
-						</a>
-						<a href="#" class="btn-edition disabled">
-							<strong>2019</strong>
-							<small><i>aguardando <br> publicação</i></small>
-						</a>
+							<?php
+								$edicao = new WP_Query(array(
+									"post_type" => "ed_prev"
+								));
+
+								if ($edicao -> have_posts()) {
+									while ($edicao -> have_posts()) {
+										$edicao -> the_post();
+
+										$aguardando_pub = get_field("aguardando_publicacao");
+										
+										if ($aguardando_pub == "nao") { ?>
+										<a href="<?php the_field("link_pdf"); ?>" target="_blank" class="btn-edition">
+											<strong><?php the_title(); ?></strong>
+											<small>Download</small>
+										</a>
+										<?php
+										} else { ?>
+											<a href="#" class="btn-edition disabled">
+												<strong><?php the_title(); ?></strong>
+												<small><i>aguardando <br> publicação</i></small>
+											</a>
+										<?php
+										}
+									}
+								}
+							?>
 					</div>
 				</div>
 			</section>
